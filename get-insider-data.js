@@ -11,17 +11,26 @@ const esapiToken = 'D9W141E2F1T4JSPKD6787ZNVHGFEPW55XF';
 const erc20Address = '0xfc86648487f2612072ac0d53e77d5ae9286a8b86';
 
 
-getHoldingsTs(insiderAddr, erc20Address)
-  .then(holdings => {
+getHoldingsTs (insiderAddr, erc20Address)
+.then(holdings => {
+  console.log(holdings)
+  return holdings
+})
 
+
+exports.getHoldings = function () {
+  getHoldingsTs (insiderAddr, erc20Address)
+  .then(holdings => {
     console.log(holdings)
+    return holdings
   })
+}
 
 
 // getABI(address)
 //   .then((abi) => {
 //     // console.log("ABI IS:", abi)
-//     const ethwContractInstance = new web3.eth.Contract(JSON.parse(abi), address);
+//     const ethwContractInstance = new web3.eth.Contract(abi, address);
 //     // console.log("INSTANCE IS:", ethwContractInstance)
 
 //     ethwContractInstance.getPastEvents('allEvents', {
@@ -37,7 +46,7 @@ getHoldingsTs(insiderAddr, erc20Address)
 //   return got(`https://api-ropsten.etherscan.io/api?module=contract&action=getabi&address=${address}`, { json: true })
 //     .then(response => {
 //       console.log('ABI response message:' + response.body.message);
-//       return response.body.result;
+//       return JSON.parse(response.body.result);
 //     }).catch(error => {
 //       console.log(error.response.body);
 //     });
