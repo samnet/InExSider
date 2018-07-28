@@ -19,7 +19,7 @@ getHoldingsTs (insiderAddr, erc20Address)
 
 
 exports.getHoldings = function () {
-  getHoldingsTs (insiderAddr, erc20Address)
+  return getHoldingsTs (insiderAddr, erc20Address)
   .then(holdings => {
     console.log(holdings)
     return holdings
@@ -58,7 +58,7 @@ function getHoldingsTs (insiderAddr, erc20Address) {
   + `?module=account&action=tokentx&address=${insiderAddr}`
   + `&contractaddress=${erc20Address}`
   + `&startblock=0&endblock=999999999&sort=asc&apikey=${esapiToken}`;
-
+console.log(url)
   return got(url, { json: true })
   .then(response => {
     console.log('Holdings response message:' + response.body.message);

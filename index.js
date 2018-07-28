@@ -1,9 +1,12 @@
 const express = require('express');
 const path = require('path');
+var cors = require('cors')
 
 const getInsiderData = require('./get-insider-data.js')
 
 const app = express();
+
+app.use(cors())
 
 app.get('/data', (req, res) => {
   return getInsiderData.getHoldings()
